@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrackerLibrary
+namespace TrackerLibrary.Models
 {
-    public interface IDataConnection
+    internal class Class1
     {
-        PrizeModel CreatePrize(PrizeModel prize);
     }
 }

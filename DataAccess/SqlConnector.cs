@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrackerLibrary.Models;
 
-namespace TrackerLibrary
+namespace TrackerLibrary.DataAccess
 {
-    internal class TextConnection : IDataConnection
+    public class SqlConnector : IDataConnection
     {
         public PrizeModel CreatePrize(PrizeModel prize)
         {
