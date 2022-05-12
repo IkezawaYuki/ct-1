@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,11 @@ namespace TrackerLibrary.DataAccess
         public PrizeModel CreatePrize(PrizeModel prize)
         {
             prize.Id = 1;
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournaments")))
+            {
+
+            }
 
             return prize;
         }
