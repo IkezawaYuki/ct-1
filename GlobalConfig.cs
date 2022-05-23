@@ -22,7 +22,7 @@ namespace TrackerLibrary
             if (db == DatabaseType.TextFile)
             {
                 // todo
-                TextConnection text = new TextConnection();
+                TextConnector text = new TextConnector();
                 Connection = text;
             }
         }

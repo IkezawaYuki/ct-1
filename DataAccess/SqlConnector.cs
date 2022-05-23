@@ -31,5 +31,26 @@ namespace TrackerLibrary.DataAccess
 
             return prize;
         }
+
+        public PersonModel CreatePerson(PersonModel person)
+        {
+            person.Id = 1;
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournaments")))
+            {
+                var p = new DynamicParameters();
+                p.Add("@FirstName", person.FirstName);
+                p.Add("@LastName", person.LastName);
+                p.Add("@EmailAddress", person.EmailAddress);
+                p.Add("@CellphoneNumber", person.CellphoneNumber);
+                p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                connection.Execute("dbo.spPeople_Insert", p, commandType: CommandType.StoredProcedure);
+
+                person.Id = p.Get<int>("@id");
+            }
+
+            return person;
+        }
     }
 }
