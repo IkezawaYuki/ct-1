@@ -14,7 +14,15 @@ namespace TrackerLibrary.DataAccess
         private const string PeopleFile = "PersonModel.csv";
         public PersonModel CreatePerson(PersonModel model)
         {
-            throw new NotImplementedException();
+            List<PersonModel> people = new List<PersonModel>();
+            int currentId = 1;
+            if (people.Count > 0)
+            {
+                currentId = people.OrderByDescending(p => p.Id).First().Id + 1;
+            }
+            model.Id = currentId;
+            people.Add(model);
+            people.SaveToPeopleFile(PeopleFile);
         }
         public PrizeModel CreatePrize(PrizeModel prize)
         {
