@@ -23,6 +23,7 @@ namespace TrackerLibrary.DataAccess
             model.Id = currentId;
             people.Add(model);
             people.SaveToPeopleFile(PeopleFile);
+            return model;
         }
         public PrizeModel CreatePrize(PrizeModel prize)
         {
