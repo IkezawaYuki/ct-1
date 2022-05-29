@@ -52,5 +52,10 @@ namespace TrackerLibrary.DataAccess
 
             return person;
         }
+
+        public List<PersonModel> GetPerson_All()
+        {
+            
+        }
     }
 }
