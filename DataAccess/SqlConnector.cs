@@ -11,11 +11,12 @@ namespace TrackerLibrary.DataAccess
 {
     public class SqlConnector : IDataConnection
     {
+        private const string db = "Tournaments";
         public PrizeModel CreatePrize(PrizeModel prize)
         {
             prize.Id = 1;
 
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournaments")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
                 var p = new DynamicParameters();
                 p.Add("@PlaceNumber", prize.PlaceNumber);
@@ -55,7 +56,12 @@ namespace TrackerLibrary.DataAccess
 
         public List<PersonModel> GetPerson_All()
         {
-            
+            List<PersonModel> output;
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournaments")))
+            {
+                output = connection.Query<PersonModel>("dbo.spPeople_GetAll").ToList();
+            }
+            return output;
         }
     }
 }
