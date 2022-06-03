@@ -10,8 +10,9 @@ namespace TrackerLibrary.DataAccess
 {
     internal class TextConnector : IDataConnection
     {
-        private const string PrizesFile = "PrizeModel.csv";
-        private const string PeopleFile = "PersonModel.csv";
+        private const string PrizesFile = "PrizeModels.csv";
+        private const string PeopleFile = "PersonModels.csv";
+        private const string TeamFile = "TeamModels.csv";
         public PersonModel CreatePerson(PersonModel model)
         {
             List<PersonModel> people = new List<PersonModel>();
@@ -48,6 +49,11 @@ namespace TrackerLibrary.DataAccess
         public List<PersonModel> GetPerson_All()
         {
             return PeopleFile.FullFilePath().LoadFile().ConvertToPersonModels();
+        }
+
+        public TeamModel CreateTeam(TeamModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }
