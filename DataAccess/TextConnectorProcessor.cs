@@ -100,5 +100,23 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             }
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
+
+        public static void SaveToTeamFile(this List<TeamModel> models, string fileName)
+        {
+            List<string> lines = new List<string>();
+            foreach (TeamModel t in models)
+            {
+
+            }
+        }
+
+        public static string ConvertPeopleListToString(List<PersonModel> people)
+        {
+            string output = "";
+            foreach(PersonModel p in people)
+            {
+                
+            }
+        }
     }
 }
