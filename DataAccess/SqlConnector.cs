@@ -87,9 +87,21 @@ namespace TrackerLibrary.DataAccess
 
                 return model;
             }
+        }
 
+        public List<TeamModel> GetTeam_All()
+        {
+            List<TeamModel> output;
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournaments")))
+            {
+                output = connection.Query<TeamModel>("dbo.spTeam_GetAll").ToList();
 
-            
+                foreach (TeamModel tm in output)
+                {
+                    tm.TeamMembers = connection.Query<PersonModel>("dbo.spTeamMembers_GetByTeam").ToList();
+                }
+            }
+            return output;
         }
     }
 }
