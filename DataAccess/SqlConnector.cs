@@ -127,7 +127,16 @@ namespace TrackerLibrary.DataAccess
                     connection.Execute("dbo.spTournamnetPrize_Insert", p, commandType: CommandType.StoredProcedure);
                 }
 
+                foreach (TeamModel tm in model.EnteredTeams)
+                {
+                    p = new DynamicParameters();
+                    p.Add("@TournamentId", model.Id);
+                    p.Add("@TeamId", tm.Id);
+                    p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
+                    connection.Execute("dbo.spTournamnetEntries_Insert", p, commandType: CommandType.StoredProcedure);
+                }
+                return model;
             }
 
         }
