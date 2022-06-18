@@ -155,6 +155,19 @@ namespace TrackerLibrary.DataAccess
 
         private void SaveTournamentPrizes(IDbConnection connection, TournamentModel model)
         {
+            foreach (PrizeModel pz in model.Prizes)
+            {
+                var p = new DynamicParameters();
+                p.Add("@TournamentId", model.Id);
+                p.Add("@PrizeId", pz.Id);
+                p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                connection.Execute("dbo.spTournamentPrizes_Insert", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        private void SaveTournamentEntries(IDbConnection connction, TournamentModel model)
+        {
 
         }
     }
